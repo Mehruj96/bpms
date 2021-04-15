@@ -1,7 +1,7 @@
-/* 
-Theme Name: Topper Bootstrap Theme 
+/*
+Theme Name: Topper Bootstrap Theme
 Author: WebThemez.com
-License: https://webthemez.com/license 
+License: https://webthemez.com/license
 */
 /*--------------------------------------------------------------
 # General
@@ -619,9 +619,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Services Section
 --------------------------------*/
-#services {
+/* #services {
   background: #ce70bb;
-}
+} */
 section#services h2, #services p {
     color: #0b111f;
 }
@@ -908,17 +908,17 @@ section#services h2, #services p {
   background-color: #c802a0;
 }
 .map{
-	
+
 margin: 80px auto 40px;
 }
 p.help-block,
 p.help-block ul{
-    float: left; 
+    float: left;
     margin: 0;
     padding: 0;
 }
 p.help-block li {
-    float: left; 
+    float: left;
     margin: 10px 0 0 0;
     padding: 0;
     list-style:none;
@@ -1204,7 +1204,7 @@ Price
 -------------------------*/
 #price{
 }
-.shape{    
+.shape{
 	border-style: solid; border-width: 0 70px 40px 0; float:right; height: 0px; width: 0px;
 	-ms-transform:rotate(360deg); /* IE 9 */
 	-o-transform: rotate(360deg);  /* Opera 10.5 */
@@ -1219,13 +1219,13 @@ Price
 	overflow:hidden;
 }
 .offer:hover {
-    -webkit-transform: scale(1.1); 
-    -moz-transform: scale(1.1); 
-    -ms-transform: scale(1.1); 
-    -o-transform: scale(1.1); 
-    transform:rotate scale(1.1); 
-    -webkit-transition: all 0.4s ease-in-out; 
--moz-transition: all 0.4s ease-in-out; 
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform:rotate scale(1.1);
+    -webkit-transition: all 0.4s ease-in-out;
+-moz-transition: all 0.4s ease-in-out;
 -o-transition: all 0.4s ease-in-out;
 transition: all 0.4s ease-in-out;
     }
@@ -1266,7 +1266,7 @@ transition: all 0.4s ease-in-out;
 	-o-transform: rotate(360deg);  /* Opera 10.5 */
 	-webkit-transform:rotate(30deg); /* Safari and Chrome */
 	transform:rotate(30deg);
-}	
+}
 .offer-content{
 	padding: 20px 20px 0;
 }
@@ -1292,7 +1292,7 @@ transition: all 0.4s ease-in-out;
   .col-md-4 {
     width: 33.33333333333333%;
   }
-    #intro { 
+    #intro {
     background-size: cover;
 }
 }

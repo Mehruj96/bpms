@@ -1,4 +1,4 @@
-@extends('backend.master')
+{{-- @extends('backend.master')
 
 @section('title')
 <h3 class="font-weight-bold">All Accepted Appointment</h3>
@@ -30,8 +30,8 @@
                 <a class="btn btn-warning btn-sm" href="#">view</a>
                 </td>
             </tr>
-           
+
         </tbody>
     </table>
 
-@endsection
+@endsection --}}

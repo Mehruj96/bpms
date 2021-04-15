@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
@@ -11,7 +10,7 @@ class CustomerController extends Controller
 {
     //Customer View Page
     public function customer(){
-        $customers = Customer::all();
+        $customers = Customer::paginate(2);
         return view('backend.layouts.customers.customer', compact('customers'));
     }
     //Customer Add

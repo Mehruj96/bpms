@@ -32,8 +32,8 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{route('all')}}">All Appointment</a>
                     <a class="dropdown-item" href="{{route('new')}}">New Appointment</a>
-                    <a class="dropdown-item" href="{{route('accepted')}}">Accepted Appointment</a>
-                    <a class="dropdown-item" href="{{route('rejected')}}">Rejected Appointment </a>
+                    {{-- <a class="dropdown-item" href="{{route('accepted')}}">Accepted Appointment</a>
+                    <a class="dropdown-item" href="{{route('rejected')}}">Rejected Appointment </a> --}}
                 </div>
             </li>
 

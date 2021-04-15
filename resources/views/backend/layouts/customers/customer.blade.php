@@ -39,6 +39,7 @@
 
   </tbody>
 </table>
+{{ $customers->links() }}
 
 <td><a class='btn btn-success btn-sm' data-toggle="modal" data-target="#exampleModal" href="   ">Add Customer</a>
 

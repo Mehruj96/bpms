@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Service;
 use App\Models\Customer;
+use App\Models\Nappointment;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class admincontroller extends Controller
 {
      public function dashboard(){
-         return view('backend.layouts.dashboard');
+         $total_customer = Customer::count();
+         $total_services = Service::count();
+         return view('backend.layouts.dashboard', compact('total_customer', 'total_services'));
      }
-     
+
      public function Home(){
          return view('backend.Home');
      }

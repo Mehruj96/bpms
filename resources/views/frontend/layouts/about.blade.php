@@ -9,7 +9,7 @@
     <section id="about" class="wow fadeInUp sec-padding">
         <div class="container">
           <div class="section-header">
-            <h2>About Us</h2>
+            <h2 class="white">About Us</h2>
           </div>
           <div class="row">
             <div class="col-lg-6 about-img">
