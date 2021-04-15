@@ -30,7 +30,7 @@
                     <td>{{ $data->appointment_date }}</td>
                     <td>{{ $data->appointment_time }}</td>
                     <td>
-                        <a class="btn btn-warning btn-sm" href="#">Remark</a>
+
                         <a class="btn btn-danger btn-sm" href="{{ route('appointment.delete', $data->id) }}">Delete</a>
                     </td>
                 </tr>
