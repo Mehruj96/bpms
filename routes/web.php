@@ -64,6 +64,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/appointment',[AppointmentController::class,'all'])->name('all');
     Route::get('/appointment/new',[AppointmentController::class,'new'])->name('new');
     Route::get('/appointment/delete/{id}',[AppointmentController::class,'delete'])->name('appointment.delete');
+    Route::get('/appointment/unread/{id}',[AppointmentController::class,'unread'])->name('appointment.unread');
+    Route::get('/appointment/force/{id}',[AppointmentController::class,'force'])->name('appointment.force');
+    Route::post('/appointment/mark-read',[AppointmentController::class,'markRead'])->name('appointment.markread');
+    Route::post('/appointment/mark-delete',[AppointmentController::class,'markDelete'])->name('appointment.markdelete');
     //Route::get('/admin/appointment/{id}',[AppointmentController::class,'show'])->name('show');
     // Route::get('/appointment/accepted',[AppointmentController::class,'accepted'])->name('accepted');
     // Route::get('/appointment/rejected',[AppointmentController::class,'rejected'])->name('rejected');

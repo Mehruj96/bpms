@@ -8,13 +8,25 @@ use App\Models\Nappointment;
 
 class AppointmentController extends Controller
 {
-     public function all(){
-        $appointment = Nappointment::paginate(10);
-         return view('backend.layouts.appointment.all', compact('appointment'));
-     }
+    public function new()
+    {
+        $appointment = Nappointment::all();
+        // $appointment = Nappointment::paginate(1);
+        // dd($appointment);
+        return view('backend.layouts.appointment.new', compact('appointment'));
+    }
 
 
-    public function add(Request $request){
+    public function all()
+    {
+        $appointment = Nappointment::onlyTrashed()->get();
+        // $appointment = Nappointment::onlyTrashed()->paginate(1);
+        return view('backend.layouts.appointment.all', compact('appointment'));
+    }
+
+
+    public function add(Request $request)
+    {
         //dd($request->all()); check purpose
         Nappointment::create([
             'apointment_number'  => $request->appointment_number,
@@ -26,32 +38,53 @@ class AppointmentController extends Controller
             'appointment_time'  => $request->appointment_time,
         ]);
         return redirect()->back();
-
     }
 
 
-
-
-
-     public function new(){
-        $appointment = Nappointment::paginate(1);
-        // dd($appointment);
-        return view('backend.layouts.appointment.new', compact('appointment'));
-    }
-
-    public function delete($id){
+    public function delete($id)
+    {
         Nappointment::findOrFail($id)->delete();
-        return redirect()->route('new');
+        return redirect()->route('new')->with('mark_success', 'This Appointment is Now avilable on All Appointment Blade!');
+    }
+
+    public function unread($id){
+        Nappointment::withTrashed()->find($id)->restore();
+        return redirect()->route('all')->with('mark_success', 'This Appointment is Now avilable on New Appointment Blade!');
+    }
+
+    public function force($id){
+        Nappointment::withTrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('all')->with('mark_success', 'This Appointment Successfully Deleted!');
     }
 
 
+    public function markRead(Request $request){
+        // dd($request->all());
+        if($request->mark_read){
+            foreach($request->mark_read as $data){
+                Nappointment::find($data)->delete();
+            }
 
-}
+            return back()->with('mark_read', 'Mark All Successfully!');
+        } else{
+
+            return back()->with('no_mark_read', 'At least One Selected!');
+        }
+    }
 
 
+    // public function markDelete(Request $request){
+    //     if($request->mark_delete){
+    //         foreach($request->mark_delete as $data){
+    //             Nappointment::findOrFail($data)->delete();
+    //         }
+    //         return back()->with('mark_delete', 'Mark Delete Successfully!');
 
+    //     } else{
 
-
+    //         return back()->with('no_mark_delete', 'At least One Selected!');
+    //     }
+    // }
 
      // public function accepted(){
     //     return view('backend.layouts.appointment.accepted');
@@ -64,6 +97,4 @@ class AppointmentController extends Controller
     // public function show(){
     //     return view('backend.layouts.appointment.view');
     // }
-
-
-
+}

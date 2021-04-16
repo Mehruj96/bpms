@@ -13,7 +13,9 @@
                 <div class="card-header card-header-info card-header-icon m-4">
                   <b class="card-category text-dark font-weight-bold">Total Customer</b>
                   <div class="card-icon">
-                    {{ $total_customer }}
+                    @isset($total_customer)
+                        {{ $total_customer }}
+                    @endisset
                   </div>
                 </div>
               </div>
@@ -95,7 +97,10 @@
                 <div class="card-header card-header-warning card-header-icon m-4">
                   <b class="card-category text-dark font-weight-bold"> Total Service</b>
                   <div class="card-icon">
-                    {{ $total_services }}
+                    @isset($total_services)
+                        {{ $total_services }}
+                    @endisset
+                    {{-- {{ $total_services }} --}}
                   </div>
                 </div>
               </div>
