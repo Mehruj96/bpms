@@ -17,6 +17,14 @@ a {
   transition: 0.5s;
 }
 
+.removeService{
+    color:white;
+    transition: 0.5s
+}
+.removeService:hover, .removeService:active, .removeService:focus{
+    color:white;
+}
+
 a:hover, a:active, a:focus {
   color: #51d8af;
   outline: none;
@@ -581,17 +589,16 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #about .content h2 {
   color: #ffffff;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 18px;
   font-family: "Raleway", sans-serif;
 }
 
 #about .content h3 {
   color: #d5d5d5;
-  font-weight: 300;
+  font-weight: bold;
   font-size: 18px;
   line-height: 26px;
-  font-style: italic;
 }
 
 #about .content p {
@@ -1320,4 +1327,4 @@ transition: all 0.4s ease-in-out;
     width: 25%;
   }
   }
-}
+

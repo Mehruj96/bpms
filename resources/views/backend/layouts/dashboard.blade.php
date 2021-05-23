@@ -25,7 +25,7 @@
                 <div class="card-header card-header-warning card-header-icon m-4">
                   <b class="card-category text-dark font-weight-bold">Total Appointment</b>
                   <div class="card-icon">
-                    98
+                    2
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
           <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon m-4">
-                  <b class="card-category text-dark font-weight-bold">Today Sales</b>
+                  <b class="card-category text-dark font-weight-bold">New Appointment</b>
                   <div class="card-icon">
                     52
                   </div>
@@ -64,9 +64,11 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon m-4">
-                  <b class="card-category text-dark font-weight-bold">Yesterday Sales</b>
+                  <b class="card-category text-dark font-weight-bold">Today's Sales</b>
                   <div class="card-icon">
-                    52
+
+                    {{ $today_amount }}
+
                   </div>
                 </div>
               </div>
@@ -74,9 +76,9 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon m-4">
-                  <b class="card-category text-dark font-weight-bold">Last Sevendays Sale</b>
+                  <b class="card-category text-dark font-weight-bold">Yesterday Sales</b>
                   <div class="card-icon">
-                    5220
+                   {{$yesterday_amount}}
                   </div>
                 </div>
               </div>
@@ -84,9 +86,9 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon m-4">
-                  <b class="card-category text-dark font-weight-bold">Total Sales</b>
+                  <b class="card-category text-dark font-weight-bold">Last Seven Days Sales</b>
                   <div class="card-icon">
-                    52
+                    {{ $last_seven_amount }}
                   </div>
                 </div>
               </div>

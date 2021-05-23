@@ -16,12 +16,20 @@ class CreateNappointmentsTable extends Migration
     {
         Schema::create('nappointments', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
+            $table->integer('service_id');
             $table->string('name');
             $table->string('email');
-            $table->string('service');
             $table->string('contact');
             $table->string('appointment_date')->nullable();
-            $table->string('appointment_time')->nullable();
+            $table->integer('slot_id')->nullable();
+            $table->decimal('paid_amount')->default(0.00);
+            $table->decimal('due_amount')->default(0.0);
+            $table->string('payment_type')->nullable();
+            $table->string('type')->default('appoinment');
+            $table->string('status')->default('pending');
+            $table->date('sales_date')->nullable();
+            $table->string('invoice_no')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

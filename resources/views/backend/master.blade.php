@@ -48,7 +48,7 @@ The above copyright notice and this permission notice shall be included in all c
   <meta property="og:description" content="Material Dashboard is a Free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design." />
   <meta property="og:site_name" content="Creative Tim" />
   <!--     Fonts and icons     -->
-  
+
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
@@ -86,26 +86,26 @@ The above copyright notice and this permission notice shall be included in all c
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
-  
+
 
 @include('backend.partials.sidebar')
 
 
     <div class="main-panel">
       <!-- Navbar -->
-      
+
       @include('backend.partials.topbar')
 
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
         @yield('dashboard-content')
-         
+
           <div class="row">
-           
+
           @yield('content')
-        
-            
+
+
           </div>
         </div>
       </div>
@@ -521,7 +521,26 @@ The above copyright notice and this permission notice shall be included in all c
       md.initDashboardPageCharts();
 
     });
+
+
+    document.querySelector('.printButton').addEventListener('click',printDiv)
+
+    function printDiv(){
+              var printContents = document.getElementById("printArea").innerHTML;
+              var originalContents = document.body.innerHTML;
+
+              document.body.innerHTML = printContents;
+
+              window.print();
+
+              document.body.innerHTML = originalContents;
+
+          }
+
   </script>
+
+
+@stack('js')
 </body>
 
 </html>

@@ -6,27 +6,21 @@
 
 @section('content')
 
- <!--==========================
-      About Section
-    ============================-->
-    <section id="about" class="wow fadeInUp sec-padding">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="white">About Us</h2>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 about-img">
-              <img src="/frontend/img/services/3.jpg" alt="">
-            </div>
-
-            <div class="col-lg-6 content">
-
-              <h5>Our system is on quality and hygiene.Our Parlour is well equipped with advanced technology equipments and provides best quality services.Our staff is well trained and experienced,offering advanced services in skin,Hair and Body shaping that will provide you with a luxurious experience that leave you feeling relax and stress free. We have different types of Hair Cut, Spa, Facial and also masage system that will give you a very fair and healthy skin.
-            </h5>
-            </div>
-          </div>
-
-        </div>
-      </section><!-- #about -->
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
 @endsection

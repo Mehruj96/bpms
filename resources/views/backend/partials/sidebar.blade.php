@@ -32,11 +32,23 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{route('all')}}">All Appointment</a>
                     <a class="dropdown-item" href="{{route('new')}}">New Appointment</a>
-                    {{-- <a class="dropdown-item" href="{{route('accepted')}}">Accepted Appointment</a>
-                    <a class="dropdown-item" href="{{route('rejected')}}">Rejected Appointment </a> --}}
+                    <a class="dropdown-item" href="{{route('timeslot')}}">Time Slot</a>
+                    {{-- <a class="dropdown-item" href="{{route('rejected')}}">Rejected Appointment </a> --}}
                 </div>
             </li>
 
+            {{-- <li class="nav-item ">
+                <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="material-icons">library_books</i>
+                    <p>About Us</p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{route('aboutus')}}">View</a>
+                    <a class="dropdown-item" href="{{route('aboutus.form')}}">Edit</a>
+
+                </div>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('services')}}">
@@ -46,7 +58,7 @@
 
             </li>
 
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
                 <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <i class="material-icons">library_books</i>
@@ -54,10 +66,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{route('expanse')}}">Expanses</a>
-                    <a class="dropdown-item" href="{{route('sales')}}">All Sales</a>
+
 
                 </div>
-            </li>
+            </li> --}}
 
             <li class="nav-item ">
                 <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -66,7 +78,8 @@
                     <p>Pages</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{route('about')}}">About Us</a>
+                    <a class="dropdown-item" href="{{route('aboutus')}}">About Us</a>
+                    <a class="dropdown-item" href="{{route('aboutus.form.create')}}">Aboutus Form</a>
                     <a class="dropdown-item" href="{{route('contact')}}">Contact Us</a>
 
                 </div>
@@ -76,6 +89,20 @@
                 <a class="nav-link" href="{{route('beautician')}}">
                     <i class="material-icons">person</i>
                     <p>Beautician</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('sales')}}">
+                    <i class="material-icons">library_books</i>
+                    <p>Sales</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('profile')}}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
                 </a>
             </li>
         </ul>

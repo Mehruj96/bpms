@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('contact')
+menu-active
+@endsection
+
 @section('content')
 
   <!--==========================

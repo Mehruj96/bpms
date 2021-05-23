@@ -1,15 +1,42 @@
 @extends('backend.master')
 
-
 @section('title')
-<h3 class="font-weight-bold">All Service</h3>
+<div class="row d-flex justify-content-between">
+    <div class="col-6">
+        <h3 class="font-weight-bold">All Service</h3>
+    </div>
+</div>
 @endsection
 
+
 @section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+         <form action="{{ route('services') }}" method="get">
+            <div>
+                <div class="d-flex" style="align-items: center">
+                    <div class="input-group no-border">
+                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                          <i class="material-icons">search</i>
+                          <div class="ripple-container"></div>
+                        </button>
+                      </div>
+                      <div style="margin-left:20px">
+                          <a class="btn btn-info btn-sm" href="{{ route('services') }}">Reset</a>
+                      </div>
+                </div>
+            </div>
+          </form>
+
+        </div>
+    </div>
+
 
 <table class="table table-bordered">
         <thead>
-            <tr style="background-color:#9c27b0; color:white; font-weight:900; height:20px; width: 100px" >
+            <tr style="background-color:#9c27b0; color:white; font-weight:90; height:20px; width: 10px" >
             <th scope="col">#</th>
             <th scope="col">Service_Name</th>
             <th scope="col">Service_Price </th>
@@ -27,7 +54,7 @@
       <td ><img style="height: 100px" src="{{ url('/uploads/service/'.$data->image) }}" alt=""></td>
 
       <td>
-        <a class="btn btn-info btn-sm" href="#">Edit</a>
+        <a class="btn btn-info btn-sm" href="{{ route('services.edit', $data->id) }}">Edit</a>
         <a class="btn btn-danger btn-sm" href="{{ route('services.delete', $data->id) }}">Delete</a>
       </td>
     </tr>

@@ -1,9 +1,38 @@
 @extends('backend.master')
 @section('title')
-<h3 class="font-weight-bold">Beauticians</h3>
+<div class="row d-flex justify-content-between">
+    <div class="col-6">
+        <h3 class="font-weight-bold">All Beautician</h3>
+    </div>
+</div>
 @endsection
 
+
 @section('content')
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+         <form action="{{ route('beautician') }}" method="get">
+            <div>
+                <div class="d-flex" style="align-items: center">
+                    <div class="input-group no-border">
+                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                          <i class="material-icons">search</i>
+                          <div class="ripple-container"></div>
+                        </button>
+                      </div>
+                      <div style="margin-left:20px">
+                          <a class="btn btn-info btn-sm" href="{{ route('beautician') }}">Reset</a>
+                      </div>
+                </div>
+            </div>
+          </form>
+
+        </div>
+    </div>
+
+
 
 <table class="table table-bordered">
     <thead>
@@ -42,7 +71,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Beautician</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

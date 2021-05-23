@@ -2,27 +2,58 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Mail\AcceptedMail;
 use App\Models\Nappointment;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Slot;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
-    public function new()
+    // public function new()
+    // {
+    //     $appointment = Nappointment::with('appointmentService')->get();
+    //     $slots = Slot::where('status','active')->get();
+    //     $appointment = Nappointment::paginate(1);
+    //     // dd($appointment);
+    //     return view('backend.layouts.appointment.new', compact('appointment','slots'));
+    // }
+
+    public function new(Request $request)
     {
-        $appointment = Nappointment::all();
-        // $appointment = Nappointment::paginate(1);
-        // dd($appointment);
-        return view('backend.layouts.appointment.new', compact('appointment'));
+        $query =$request->input('search');
+
+        if($request->input('search')){
+            $appointment = Nappointment::where('name','like',"%{$query}%")->get();
+            $slots = Slot::where('status','active')->get();
+        }else{
+            $appointment = Nappointment::with('appointmentService')->get();
+            $slots = Slot::where('status','active')->get();
+        }
+
+
+        // $appointment = Nappointment::onlyTrashed()->paginate(1);
+        return view('backend.layouts.appointment.new', compact('appointment','slots'));
     }
 
-
-    public function all()
+// All appointment
+    public function all(Request $request)
     {
-        $appointment = Nappointment::onlyTrashed()->get();
+        $query =$request->input('search');
+
+        if($request->input('search')){
+            $appointment = Nappointment::where('name','like',"%{$query}%")->get();
+        }else{
+            $appointment = Nappointment::get();
+        }
+
+
         // $appointment = Nappointment::onlyTrashed()->paginate(1);
         return view('backend.layouts.appointment.all', compact('appointment'));
     }
+
 
 
     public function add(Request $request)
@@ -35,25 +66,32 @@ class AppointmentController extends Controller
             'appointment_service' => $request->appointment_service,
             'appointment_contact' => $request->appointment_contact,
             'appointment_date'  => $request->appointment_date,
-            'appointment_time'  => $request->appointment_time,
+            'slot_id'  => $request->slot_id,
         ]);
         return redirect()->back();
     }
 
 
-    public function delete($id)
-    {
-        Nappointment::findOrFail($id)->delete();
-        return redirect()->route('new')->with('mark_success', 'This Appointment is Now avilable on All Appointment Blade!');
+
+    public function delete($id){
+        // print_r(Nappointment::select('email')->get());
+        if(Nappointment::findOrFail($id)->delete()){
+            Mail::to(Auth::user()->email)->send(new AcceptedMail());
+        }
+        return redirect()->route('new')->with('mark_success', 'This Appointment is Now avilable on All Appointment!');
     }
+
 
     public function unread($id){
         Nappointment::withTrashed()->find($id)->restore();
-        return redirect()->route('all')->with('mark_success', 'This Appointment is Now avilable on New Appointment Blade!');
+        return redirect()->route('all')->with('mark_success', 'This Appointment is Now avilable on New Appointment!');
     }
 
     public function force($id){
-        Nappointment::withTrashed()->findOrFail($id)->forceDelete();
+        Nappointment::findOrFail($id)->delete();
+        // if(Nappointment::withTrashed()->findOrFail($id)->forceDelete()){
+        //     Mail::to(Nappointment::select('email'))->send(new RejectedMail());
+        // }
         return redirect()->route('all')->with('mark_success', 'This Appointment Successfully Deleted!');
     }
 
@@ -73,22 +111,24 @@ class AppointmentController extends Controller
     }
 
 
-    // public function markDelete(Request $request){
-    //     if($request->mark_delete){
-    //         foreach($request->mark_delete as $data){
-    //             Nappointment::findOrFail($data)->delete();
-    //         }
-    //         return back()->with('mark_delete', 'Mark Delete Successfully!');
+    public function timeslot(){
+        $slots = Slot::all();
+        return view('backend.layouts.appointment.timeslot', compact('slots'));
+    }
 
-    //     } else{
+    public function slotsDelete($id){
+        Slot::findOrFail($id)->delete();
+        return redirect()->route('timeslot');
+    }
 
-    //         return back()->with('no_mark_delete', 'At least One Selected!');
-    //     }
-    // }
 
-     // public function accepted(){
-    //     return view('backend.layouts.appointment.accepted');
-    // }
+    public function timeslotAdd(Request $request){
+        Slot::create([
+            'from_time' => $request->from_time,
+            'to_time' => $request->to_time,
+        ]);
+        return back();
+    }
 
     // public function rejected(){
     //     return view('backend.layouts.appointment.rejected');
@@ -97,4 +137,20 @@ class AppointmentController extends Controller
     // public function show(){
     //     return view('backend.layouts.appointment.view');
     // }
+
+
+    // status update
+    public function updateStatus($id,$status){
+        $appointment=Nappointment::find($id);
+
+
+        if($status === 'confirmed'){
+            Mail::to($appointment->email)->send(new AcceptedMail());
+            $appointment->update(['status'=>$status]);
+        }else{
+            $appointment->update(['status'=>$status]);
+        }
+        return redirect()->back();
+    }
+
 }

@@ -1,9 +1,20 @@
 @extends('frontend.master')
+
+@section('home')
+menu-active
+@endsection
+
 @section('content')
 
-    <!--==========================
-    Intro Section
-  ============================-->
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show m-auto col-6" role="alert">
+    <strong class="text-succes">{{ session('success') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div><br>
+@endif
+
   <section id="intro">
 
     <div class="intro-content">

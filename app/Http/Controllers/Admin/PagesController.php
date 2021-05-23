@@ -9,6 +9,7 @@ use App\Models\Customer;
 class PagesController extends Controller
 {
      public function about(){
+        //  dd('hi');
          return view('backend.layouts.pages.about');
      }
 

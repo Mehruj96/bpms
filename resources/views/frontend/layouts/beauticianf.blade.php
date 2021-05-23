@@ -1,5 +1,9 @@
 @extends('frontend.master')
 
+@section('beautician')
+menu-active
+@endsection
+
 @section('content')
 
 <!--==========================
@@ -18,8 +22,9 @@
                             <img height="250" width="250" src="{{ url('/uploads/beautician/'.$data->beautician_image) }}" alt="">
                         </div>
                         <div class="details">
-                            <h4>Name: {{ $data->beautician_name }}</h4>
-                            <span>Phone: {{ $data->beautician_number }}</span>
+                            <h4>{{ $data->beautician_name }}</h4>
+                            {{-- <span>Phone: {{ $data->beautician_number }}</span> --}}
+                            <a href="{{ route('beautician.view',$data->id) }}"class="btn btn-primary">View</button><br/></a>
                         </div>
                     </div>
                 </div>
