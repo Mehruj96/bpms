@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\UserController as FrontUserController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\ServiceCartController;
+use App\Http\Controllers\Frontend\CancelServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +40,6 @@ Route::get('/', function () {
 
         Route::get('appointmentf/{id}', [HomeController::class, 'appointmentf'])->name('appointmentf');
         Route::post('appointment/make/{id}', [HomeController::class, 'appointmentMake'])->name('appointment.make');
-
-
         Route::get('servicecart/{id}', [ServiceCartController::class, 'servicecart'])->name('servicecart');
         // Route::post('servicecart/make/{id}', [ServiceCartController::class, 'servicecartMake'])->name('servicecart.make');
     });
@@ -66,6 +65,8 @@ Route::get('servicecart/{id}', [ServiceCartController::class, 'servicecart'])->n
 Route::get('viewcart', [ServiceCartController::class, 'viewcart'])->name('cart');
 Route::get('/cart/delete/{rowId}',[ServiceCartController::class,'delete'])->name('cart.delete');
 Route::get('/cart/delete/',[ServiceCartController::class,'alldelete'])->name('cart.alldelete');
+Route::get('cancelservice/{id}', [CancelServiceController::class, 'cancelservice'])->name('cancelservice');
+
 
 // All Admin Controller(Backend)
 
@@ -109,8 +110,7 @@ Route::prefix('admin')->group(function(){
      Route::get('/slots/delete/{id}',[AppointmentController::class,'slotsDelete'])->name('slots.delete');
 
     Route::get('{id}/{status}',[AppointmentController::class,'updateStatus'])->name('appointment.status');
-
-
+    Route::get('/appointment/view/{id}',[AppointmentController::class,'view'])->name('appointment.view');
 
     //services//
     Route::get('/services',[ServiceController::class,'services'])->name('services');

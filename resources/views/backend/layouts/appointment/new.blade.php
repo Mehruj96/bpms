@@ -48,7 +48,6 @@
                     <th scope="col">User Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Service</th>
                     <th scope="col">Contact</th>
                     <th scope="col">Appointment Date</th>
                     <th scope="col">Slot_id</th>
@@ -67,11 +66,11 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->email }}</td>
-                            <td>
+                             {{-- <td>
                                 @isset($data->appointmentService->service_name)
                                     {{ $data->appointmentService->service_name }}
                                 @endisset
-                            </td>
+                            </td> --}}
                             <td>{{ $data->contact }}</td>
                             <td>{{ $data->appointment_date }}</td>
                             <td>{{ $data->slot_id }}</td>

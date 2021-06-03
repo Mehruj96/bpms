@@ -17,7 +17,6 @@ class CreateNappointmentsTable extends Migration
         Schema::create('nappointments', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->integer('service_id');
             $table->string('name');
             $table->string('email');
             $table->string('contact');

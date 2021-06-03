@@ -6,6 +6,8 @@ use App\Mail\AcceptedMail;
 use App\Models\Nappointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Booking_Items;
+use App\Models\Service;
 use App\Models\Slot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -151,6 +153,20 @@ class AppointmentController extends Controller
             $appointment->update(['status'=>$status]);
         }
         return redirect()->back();
+    }
+
+
+
+    //appointment_view page//
+
+    public function view($id)
+    {
+        $Napointment=Nappointment::find($id);
+        $booking = Booking_Items::where('appointment_id', $Napointment-> id)-> get();
+        $total= $booking->sum('sub_total');
+        // $services = Service::where('service_id')
+        // dd($booking);
+        return view('backend.layouts.appointment.view', compact('Napointment', 'booking'));
     }
 
 }

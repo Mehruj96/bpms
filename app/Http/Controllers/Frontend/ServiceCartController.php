@@ -41,6 +41,7 @@ return redirect()->back();
     }
 
     public function alldelete(){
+
         Cart::destroy();
         return redirect()->back();
     }

@@ -21,15 +21,30 @@ menu-active
           <h3><b class="text-info">Email:</b>  {{ Auth::user()->email }}</h3>
           <h3><b class="text-info">Contact:</b>  {{ Auth::user()->contact }}</h3>
           <h3><b class="text-info">Address:</b>  {{ Auth::user()->address }}</h3>
-          <h3><b class="text-info">Service:
-          <h3><b class="text-info">Appointment Date:
-          <h3><b class="text-info">Appointment Time:
 
 
+          <table class="table table-bordered ">
 
-   {{-- <td>
-        <a class="btn btn-danger btn-sm" href="{{ route('appointmentf',$service->id) }}">Booked For an Appointment</a>
-    </td> --}}
+            <thead>
+              <tr style="background-color:#9c27b0; color:white; font-weight:900">
+                <th scope="col">Appoinment Date</th>
+                <th scope="col">Appointment Time</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                 @foreach ($appointment as $data )
+                <tr>
+
+                    <td>{{ $data->appointment_date }}</td>
+                    <td>{{ $data->appointmentSlots->from_time }}</td>
+                    <td> <a class="btn btn-danger btn-sm" href={{ route('cancelservice',$data->id) }}>View Appointment</a></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
+
 
 
         </h3>
@@ -42,3 +57,8 @@ menu-active
 
 
 @endsection
+
+
+
+
+

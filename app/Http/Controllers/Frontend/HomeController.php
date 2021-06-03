@@ -9,6 +9,8 @@ use App\Models\Beautician;
 use App\Models\Nappointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Booking_Items;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 class HomeController extends Controller
@@ -67,13 +69,27 @@ class HomeController extends Controller
                 'name' => $request->name,
                 'user_id' => auth()->user()->id,
                 'email' => $request->email,
-                'service_id' => $service->id,
                 'contact' => $request->contact,
                 'appointment_date' => $request->appointment_date,
                 'slot_id' => $request->slot_id,
             ]);
 
+            $carts = Cart::content();
 
+
+            foreach($carts as $cart)
+            {
+
+                Booking_Items::create([
+                    'appointment_id'=>$a->id,
+                    'service_id'=>$cart->id,
+                    'service_price'=>$cart->price,
+                    'service_quantity'=>$cart->qty
+
+                ]);
+
+            }
+            Cart::destroy();
             return redirect()->back()->with('appointment_info', 'Thanks for Your Appointment');
         }else{
             return redirect()->back()->with('appointment_info', 'Already Booked');

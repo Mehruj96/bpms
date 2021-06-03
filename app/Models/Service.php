@@ -15,6 +15,10 @@ class Service extends Model
 
     ];
     // protected $graded=[];
+    public function bookingService()
+    {
+       return $this->belongsTo(Service::class, 'service_id', 'id');
 
+    }
 
 }

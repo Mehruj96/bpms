@@ -41,12 +41,11 @@
         <th scope="col">SN</th>
       <th scope="col">User Id</th>
       <th scope="col">Name</th>
-      <th scope="col">Service Name</th>
-      <th scope="col">Service Price</th>
+      {{-- <th scope="col">Service Price</th> --}}
       <th scope="col">Paid Amount</th>
       <th scope="col">Due Amount</th>
       <th scope="col">Payment Type</th>
-      <th scope="col">Date</th>
+      <th scope="col">Appointment Date</th>
       <th scope="col">Sales Date</th>
       <th scope="col">Action</th>
 
@@ -54,15 +53,24 @@
   </thead>
   <tbody>
   @foreach($appointment as $key=>$data)
+
+  @php
+  $total =0;
+
+    foreach($data->bookingDetails as $item){
+
+        $total += $item->service_price * $item->service_quantity;
+    }
+
+  @endphp
+
+
     <tr>
       <th scope="row">{{ $key+1}}</th>
       <td>{{ $data->user_id}}</td>
       <td>{{ $data->name}}</td>
-      <td>{{$data->appointmentService->service_name}}</td>
-      <td>{{$data->appointmentService->service_price}}</td>
-
       <td>{{ $data->paid_amount}}</td>
-      <td>{{ $data->due_amount}}</td>
+      <td>{{  $total - $data->paid_amount }}</td>
       <td>{{ $data->payment_type}}</td>
       <td>{{ $data->appointment_date}}</td>
       <td>{{ optional($data->sales_date)->format('Y-m-d h:i:s A')}}</td>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Customer;
 use App\Models\Service;
+use App\Models\Customer;
 use App\Models\Nappointment;
+use Illuminate\Http\Request;
+use App\Models\Booking_Items;
+use App\Http\Controllers\Controller;
 
 class SalesController extends Controller
 {
@@ -34,8 +35,15 @@ class SalesController extends Controller
 
     //invoice//
     public function invoice($id){
-        $invoice = Nappointment::find($id);
-        return view('backend.layouts.invoice',compact('invoice'));
+        $invoice = Nappointment::with('bookingDetails.bookingService')->find($id);
+
+        $total =0;
+
+        foreach($invoice->bookingDetails as $item){
+
+            $total += $item->service_price * $item->service_quantity;
+        }
+          return view('backend.layouts.invoice',compact('invoice','total'));
     }
 
 

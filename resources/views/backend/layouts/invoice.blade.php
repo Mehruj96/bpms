@@ -62,22 +62,27 @@
 			      <thead>
 			        <tr>
 			          <th class="text-center" style="width:5%">#</th>
-			          <th style="width:50%">Service</th>
-			          <th class="text-right" style="width:15%">Quantity</th>
+			          <th style="width:50%">Service Name</th>
+			          <th class="text-right" style="width:15%">Qty</th>
 			          <th class="text-right" style="width:15%">Service Price</th>
-			          <th class="text-right" style="width:15%">Paid Amount</th>
+			          <th class="text-right" style="width:15%">Sub Total</th>
 			        </tr>
 			      </thead>
 
 			      <tbody>
-			        <tr>
-			          <td class="text-center">1</td>
-			          <td>{{ $invoice->appointmentService->service_name }}</td>
-			          <td class="text-right">10</td>
-			          <td class="text-right">{{ $invoice->appointmentService->service_price }}</td>
-			          <td class="text-right">{{ $invoice->paid_amount }}</td>
-			        </tr>
+                      @foreach ($invoice->bookingDetails as $key=>$invoiceLine)
+                <tr>
+			          <td class="text-center">{{ $key + 1 }}</td>
+			          <td>{{ $invoiceLine->bookingService->service_name }}</td>
+                      {{-- @dd($invoice->appointmentBooking->service_quantity) --}}
+			          <td class="text-right">{{ $invoiceLine->service_quantity }}</td>
 
+                       <td class="text-right">{{ $invoiceLine->service_price }}</td>
+			          <td class="text-right">{{ $invoiceLine->service_quantity * $invoiceLine->service_price }}</td>
+
+
+			        </tr>
+                    @endforeach
 			       </tbody>
 			    </table>
 
@@ -96,7 +101,9 @@
 					  {{-- <p>Subtotal : $1019</p>
 			          <p>Discount (10%) : $101 </p>
 			          <p>VAT (8%) : $73 </p> --}}
-			          <p>Total :  <td class="text-right">{{ $invoice->paid_amount }}</td> </p>
+			          <p>Total :  <td class="text-right">{{ $total}}</td> </p>
+                      <p>Payed Amount :  <td class="text-right">{{ $invoice->paid_amount }}</td> </p>
+                      <p>Due Amount :  <td class="text-right">{{ $total - $invoice->paid_amount }}</td> </p>
 			</div>
 			</div>
 
